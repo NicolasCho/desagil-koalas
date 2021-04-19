@@ -93,6 +93,10 @@ public class DataFrame {
 			throw new DataFrameException("Column " + label + " is empty!");
 		}
 
+		return erroQuadratico(values);
+	}
+
+	private double erroQuadratico(List<Double> values) {
 		double s;
 
 		s = 0;
@@ -117,19 +121,7 @@ public class DataFrame {
 			throw new DataFrameException("Column " + label + " is empty!");
 		}
 
-		double s, m;
-
-		s = 0;
-		for (double value: values) {
-			s += value;
-		}
-		m = s / values.size();
-
-		s = 0;
-		for (double value: values) {
-			s += Math.pow(value - m, 2);
-		}
-		m = s / values.size();
+		double m = erroQuadratico(values);
 
 		return Math.sqrt(m);
 	}
